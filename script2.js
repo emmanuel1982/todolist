@@ -50,12 +50,11 @@ addButton.addEventListener('click', function() {
         const sortValue = document.getElementById("sort");
         
         if (sortValue.options[1].label === 'Ascending') {
-            const asc = todoArray.sort();
+            const asc = todoArray.sort((a, b) => a - b);
             console.log(asc);
             //asc.forEach(item => listItem.innerHTML);
         } else {
-            const desc = todoArray.sort();
-            desc = todoArray.reverse();
+            const desc = todoArray.sort((a, b) => b - a);
             console.log(desc);
             //des.forEach(item => listItem.innerHTML);
         }
