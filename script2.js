@@ -18,7 +18,7 @@ addButton.addEventListener('click', function() {
     const removeButton = document.createElement('button');
     const listItemButton = document.createElement('button');
     const listItemDiv = document.createElement('div');
-    const listItem = document.createElement('li');
+    let listItem = document.createElement('li');
     listItemButton.innerHTML = 'Completed';
     removeButton.innerHTML = 'Remove';
     
@@ -48,15 +48,40 @@ addButton.addEventListener('click', function() {
 
     sort.addEventListener('change', () => {
         const sortValue = document.getElementById("sort");
-        
-        if (sortValue.options[1].label === 'Ascending') {
+        if (sortValue.options[sortValue.selectedIndex].text == 'Ascending') {
+            listItem.remove();
+            asc = todoArray.sort();
+            
+            for (let i = 0; i < asc.length; i++) {
+                asc[i].innerHTML = listItem;
+                listItemDiv.appendChild(listItem);
+                listItemDiv.appendChild(listItemButton);
+                listItemDiv.appendChild(removeButton);
+                todoList.appendChild(listItemDiv);
+            }
+
+
+        } else if (sortValue.options[sortValue.selectedIndex].text == 'Descending') {
+            desc = todoArray.sort().reverse();
+            
+            for (let i = 0; i < asc.length; i++) {
+                desc[i].innerHTML = listItem;
+                listItemDiv.appendChild(listItem);
+                listItemDiv.appendChild(listItemButton);
+                listItemDiv.appendChild(removeButton);
+                todoList.appendChild(listItemDiv);
+            }
+        }
+
+        /*
+        if (sortValue.options[1].label == 'Ascending') {
             const asc = todoArray.sort((a, b) => a - b);
             console.log(asc);
             //asc.forEach(item => listItem.innerHTML);
         } else {
             const desc = todoArray.sort((a, b) => b - a);
             console.log(desc);
-            //des.forEach(item => listItem.innerHTML);
-        }
+            //desc.forEach(item => listItem.innerHTML);
+        }*/
     })
 });
